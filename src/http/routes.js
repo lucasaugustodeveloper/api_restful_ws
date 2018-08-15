@@ -1,5 +1,5 @@
 
-const categories = require('../server/services/mysql')
+const db = require('../server/services/mysql')
 
 const routes = (server) => {
   server.get('/', (req, res, next) => {
@@ -7,10 +7,12 @@ const routes = (server) => {
     next()
   })
 
-  server.get('/categoria', (req, res, next) => {
-    categories
-      .then(categories => res.send(categories))
-      .then(error => res.send(error))
+  server.get('/categoria', async (req, res, next) => {
+    try {
+      res.send(await db.categories().all())
+    } catch (error) {
+      res.send(error)
+    }
 
     next()
   })
@@ -27,7 +29,7 @@ const routes = (server) => {
 
   //   next()
   // })
-  // server.del('/categoria', (req, res, next) => {
+  // server.delete('/categoria', (req, res, next) => {
   //   res.send()
 
   //   next()
