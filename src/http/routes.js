@@ -16,24 +16,39 @@ const routes = (server) => {
 
     next()
   })
-
-  server.post('/categoria', (req, res, next) => {
+  server.post('/categoria', async (req, res, next) => {
     const { name } = req.params
 
-    res.send(name)
+    try {
+      res.send(await db.categories().save(name))
+    } catch (error) {
+      res.send(error)
+    }
 
     next()
   })
-  // server.put('/categoria', (req, res, next) => {
-  //   res.send()
+  server.put('/categoria', async (req, res, next) => {
+    const { id, name } = req.params
 
-  //   next()
-  // })
-  // server.delete('/categoria', (req, res, next) => {
-  //   res.send()
+    try {
+      res.send(await db.categories().update(id, name))
+    } catch (error) {
+      res.send(error)
+    }
 
-  //   next()
-  // })
+    next()
+  })
+  server.del('/categoria', async (req, res, next) => {
+    const { id } = req.params
+
+    try {
+      res.send(await db.categories().delete(id))
+    } catch (error) {
+      res.send(error)
+    }
+
+    next()
+  })
 }
 
 module.exports = routes
