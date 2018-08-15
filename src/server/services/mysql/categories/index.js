@@ -34,12 +34,12 @@ const categories = (deps) => {
       return new Promise((resolve, reject) => {
         connection.query('UPDATE categories SET name = ? WHERE id = ?', [name, id],
           (error, results) => {
-            if (error) {
+            if (error || !results.affectedRows) {
               errorHandler(error, `Falha ao atualizar a categoria ${name}`, reject)
               return false
             }
 
-            resolve({ category: { name, id: results.insertId } })
+            resolve({ category: { name, id }, affectedRows: results.affectedRows })
           })
       })
     },
@@ -48,12 +48,12 @@ const categories = (deps) => {
       return new Promise((resolve, reject) => {
         connection.query('DELETE FROM categories WHERE id = ? ', [id],
           (error, results) => {
-            if (error) {
+            if (error || !results.affectedRows) {
               errorHandler(error, `Falha ao excluir a categoria com id(${id})`, reject)
               return false
             }
 
-            resolve({ message: `Categoria excluída com sucesso` })
+            resolve({ message: `Categoria excluída com sucesso`, affectedRows: results.affectedRows })
           })
       })
     }
