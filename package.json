@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "dev": "nodemon src/*.js",
     "start": "pm2 src/index.js",
     "lint": "./node_modules/.bin/eslint src/*.js"
@@ -20,6 +20,7 @@
     "restify-cors-middleware": "^1.1.1"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "eslint": "^5.2.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
