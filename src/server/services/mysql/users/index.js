@@ -1,21 +1,23 @@
 
 const sha1 = require('sha1')
+const Query = require('../helpers')
 
 const users = (deps) => {
   const { connection, errorHandler } = deps
 
   return {
     all: () => {
-      return new Promise((resolve, reject) => {
-        connection.query('select id, email from users', (error, results) => {
-          if (error) {
-            errorHandler(error, 'Falha ao lista os usuários', reject)
-            return false
-          }
+      return Query(connection, 'SELECT id, email FROM users', 'Falha ao lista todos os usuários', errorHandler, 'users')
+      // return new Promise((resolve, reject) => {
+      //   connection.query('select id, email from users', (error, results) => {
+      //     if (error) {
+      //       errorHandler(error, 'Falha ao lista os usuários', reject)
+      //       return false
+      //     }
 
-          resolve({ users: results })
-        })
-      })
+      //     resolve({ users: results })
+      //   })
+      // })
     },
 
     save: (email, password) => {

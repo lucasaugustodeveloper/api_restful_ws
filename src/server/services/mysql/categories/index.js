@@ -1,19 +1,22 @@
 
+const Query = require('../helpers')
+
 const categories = (deps) => {
   const { connection, errorHandler } = deps
 
   return {
     all: () => {
-      return new Promise((resolve, reject) => {
-        connection.query('select * from categories', (error, results) => {
-          if (error) {
-            errorHandler(error, 'Falha ao lista as categorias', reject)
-            return false
-          }
+      return Query(connection, 'SELECT * FROM categories', 'Falha ao lista todas as categorias', errorHandler, 'categories')
+      // return new Promise((resolve, reject) => {
+      //   connection.query('select * from categories', (error, results) => {
+      //     if (error) {
+      //       errorHandler(error, 'Falha ao lista as categorias', reject)
+      //       return false
+      //     }
 
-          resolve({ categories: results })
-        })
-      })
+      //     resolve({ categories: results })
+      //   })
+      // })
     },
 
     save: (name) => {
