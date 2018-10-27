@@ -1,6 +1,5 @@
 
 const test = require('ava')
-// const sha1 = require('sha1')
 
 const { connection, errorHandler } = require('./setup')
 
