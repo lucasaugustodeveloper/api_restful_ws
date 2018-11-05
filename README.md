@@ -54,6 +54,7 @@ $ git clone https://github.com/laugustofrontend/api_restful_ws.git
 ```sh
 $ cd api_restful_ws
 $ npm install or npm i
+$ mysql -u userDB -p < tables.sql
 ```
 
 ##  Execute tests
