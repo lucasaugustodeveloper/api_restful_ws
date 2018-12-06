@@ -1,5 +1,7 @@
 -- Create database
-create database api_restful default character set utf8 default collate utf8_general_ci;
+create database api_restful_ws default CHARACTER set utf8 DEFAULT COLLATE utf8_general_ci;
+create user 'api_resftul_ws'@'localhost' identified by 'api_resftul_ws';
+grant all on api_resftul_ws.* to 'api_resftul_ws'@'localhost';
 
 -- Create table syntax for TABLE 'categories'
 create table categories (
