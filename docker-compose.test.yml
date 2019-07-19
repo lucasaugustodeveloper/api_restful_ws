@@ -1,0 +1,21 @@
+version: '2'
+services:
+  app:
+    build: .
+    command: npm run test
+    networks:
+      - app
+    depends_on:
+      - mysql
+    ports:
+      - '3456:3456'
+
+  mysql:
+    image: mysql:5.6
+    networks:
+      - app
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+networks:
+  app:
