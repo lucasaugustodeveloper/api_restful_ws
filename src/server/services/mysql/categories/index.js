@@ -21,7 +21,7 @@ const categories = (deps) => {
 
     save: (name) => {
       return new Promise((resolve, reject) => {
-        connection.query('INSERT INTO categories (name) values (?)', [name],
+        connection.query('INSERT INTO categories (id, name) values (uuid(), ?)', [name],
           (error, results) => {
             if (error) {
               errorHandler(error, `Falha ao salvar a categoria ${name}`, reject)
