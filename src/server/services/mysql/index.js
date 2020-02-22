@@ -8,6 +8,8 @@ const connection = mysqlServer.createConnection({
   database: process.env.MYSQL_DB
 })
 
+connection.connect()
+
 const errorHandler = (error, msg, rejectFunction) => {
   console.log(error)
 
