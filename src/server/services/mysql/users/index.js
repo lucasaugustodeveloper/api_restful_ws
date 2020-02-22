@@ -8,21 +8,11 @@ const users = (deps) => {
   return {
     all: () => {
       return Query(connection, 'SELECT id, email FROM users', 'Falha ao lista todos os usuários', errorHandler, 'users')
-      // return new Promise((resolve, reject) => {
-      //   connection.query('select id, email from users', (error, results) => {
-      //     if (error) {
-      //       errorHandler(error, 'Falha ao lista os usuários', reject)
-      //       return false
-      //     }
-
-      //     resolve({ users: results })
-      //   })
-      // })
     },
 
     save: (email, password) => {
       return new Promise((resolve, reject) => {
-        connection.query('INSERT INTO users (id, email, pass) values (uuid(), ?, ?)', [email, sha1(password)],
+        connection.query('INSERT INTO users (email, pass) values (?, ?)', [email, sha1(password)],
           (error, results) => {
             if (error) {
               errorHandler(error, `Falha ao salvar o usuário ${email}`, reject)
