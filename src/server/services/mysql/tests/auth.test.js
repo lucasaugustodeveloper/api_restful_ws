@@ -11,7 +11,7 @@ const create = () => users.save('users@test.com', '123456')
 test.beforeEach(t => connection.query('TRUNCATE TABLE users'))
 test.after.always(t => connection.query('TRUNCATE TABLE users'))
 
-test('Login de Usuário - sucesso', async t => {
+test('Login User - success', async t => {
   await create()
 
   const result = await auth.authenticate('users@test.com', '123456')
@@ -20,7 +20,7 @@ test('Login de Usuário - sucesso', async t => {
   t.not(result.token.length, 0)
 })
 
-test('Login de Usuário - falha', async t => {
+test('Login User - fail', async t => {
   await create()
 
   const promise = auth.authenticate('user@test.com', '12345')

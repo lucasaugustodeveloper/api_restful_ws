@@ -7,13 +7,13 @@ create database api_restful_ws_test default CHARACTER set utf8 DEFAULT COLLATE u
 use api_restful_ws;
 -- Create table syntax for TABLE 'categories'
 create table categories (
-    id int not null auto_increment primary key,
+    id char(36) not null primary key,
     name varchar(255) not null
 );
 
 -- Create table syntax for TABLE 'users'
 create table users (
-    id int not null auto_increment primary key,
+    id char(36) not null primary key,
     email varchar(70) not null,
     pass varchar(40) not null
 );
@@ -21,13 +21,13 @@ create table users (
 use api_restful_ws_test;
 -- Create table syntax for TABLE 'categories'
 create table categories (
-    id int not null auto_increment primary key,
+    id char(36) not null primary key,
     name varchar(255) not null
 );
 
 -- Create table syntax for TABLE 'users'
 create table users (
-    id int not null auto_increment primary key,
+    id char(36) not null primary key,
     email varchar(70) not null,
     pass varchar(40) not null
 );

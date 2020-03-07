@@ -16,4 +16,6 @@ const errorHandler = (error, msg, rejectFunction) => {
   rejectFunction({ error: msg })
 }
 
+connection.connect()
+
 module.exports = { connection, errorHandler }

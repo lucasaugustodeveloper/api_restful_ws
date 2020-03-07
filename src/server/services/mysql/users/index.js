@@ -12,7 +12,7 @@ const users = (deps) => {
 
     save: (email, password) => {
       return new Promise((resolve, reject) => {
-        connection.query('INSERT INTO users (email, pass) values (?, ?)', [email, sha1(password)],
+        connection.query('INSERT INTO users (id, email, pass) values (uuid(), ?, ?)', [email, sha1(password)],
           (error, results) => {
             if (error) {
               errorHandler(error, `Falha ao salvar o usuário ${email}`, reject)
