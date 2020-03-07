@@ -12,7 +12,7 @@ const categories = (server) => {
   })
 
   server.post('/categoria', async (req, res, next) => {
-    const { name } = req.params
+    const { name } = req.body
 
     try {
       res.send(await db.categories().save(name))
@@ -24,7 +24,7 @@ const categories = (server) => {
   })
 
   server.put('/categoria', async (req, res, next) => {
-    const { id, name } = req.params
+    const { id, name } = req.body
 
     try {
       res.send(await db.categories().update(id, name))
@@ -35,7 +35,7 @@ const categories = (server) => {
     next()
   })
   server.del('/categoria', async (req, res, next) => {
-    const { id } = req.params
+    const { id } = req.body
 
     try {
       res.send(await db.categories().delete(id))

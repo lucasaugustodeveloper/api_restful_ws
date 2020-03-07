@@ -11,7 +11,7 @@ const users = (server) => {
   })
   server.post('/register', async (req, res, next) => {
     try {
-      const { email, password } = req.params
+      const { email, password } = req.body
       res.send(await db.users().save(email, password))
     } catch (error) {
       res.send(error)
