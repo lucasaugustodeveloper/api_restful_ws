@@ -18,7 +18,7 @@
     "filter-files": "^0.4.0",
     "is-directory": "^0.3.1",
     "jsonwebtoken": "^8.3.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mongojs": "^2.6.0",
     "mysql": "github:mysqljs/mysql",
     "restify": "^7.2.1",
