@@ -40,7 +40,6 @@ test('Delete User', async t => {
   await create()
 
   const listUsers = await users.all()
-  console.log('Deleted User', listUsers.users[0].id)
 
   const removed = await users.delete(listUsers.users[0].id)
 

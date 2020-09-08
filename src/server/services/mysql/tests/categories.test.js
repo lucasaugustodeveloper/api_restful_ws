@@ -28,7 +28,6 @@ test('Updated Category', async t => {
   await create()
 
   const category = await categories.all()
-  console.log('Updated Category => ', category.categories[0].id)
 
   const updated = await categories.update(category.categories[0].id, 'category-test-updated')
 
