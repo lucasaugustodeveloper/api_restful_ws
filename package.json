@@ -23,7 +23,7 @@
     "lodash": "^4.17.21",
     "mongojs": "^3.0.0",
     "mysql": "github:mysqljs/mysql",
-    "restify": "^8.1.0",
+    "restify": "^8.1.1",
     "restify-cors-middleware": "^1.1.1",
     "sha1": "^1.1.1",
     "snyk": "^1.521.0"
