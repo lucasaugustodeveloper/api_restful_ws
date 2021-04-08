@@ -7,9 +7,7 @@
     "test": "ava --verbose",
     "dev": "nodemon src/*.js",
     "start": "node src/index.js",
-    "lint": "./node_modules/.bin/eslint src/*.js",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "lint": "./node_modules/.bin/eslint src/*.js"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +23,7 @@
     "mysql": "github:mysqljs/mysql",
     "restify": "^8.1.1",
     "restify-cors-middleware": "^1.1.1",
-    "sha1": "^1.1.1",
-    "snyk": "^1.521.0"
+    "sha1": "^1.1.1"
   },
   "devDependencies": {
     "ava": "^0.25.0",
@@ -37,6 +34,5 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "nodemon": "^1.18.3"
-  },
-  "snyk": true
+  }
 }
