@@ -1,13 +1,27 @@
-FROM node:15.12.0
+# ---- Base Node ----
+FROM node:14-alpine3.13 AS base
+LABEL maintainer="lucas.augusto5061@gmail.com"
 
-ENV HOME=/home
+RUN apk add --no-cache tini yarn git
+WORKDIR /app
+ENTRYPOINT [ "/sbin/tini", "--" ]
+COPY package.json .
 
-COPY package.json package-lock.json $HOME/app/
+# ---- Dependencies ----
+FROM base AS dependecies
+RUN npm set progress=false && npm config set depth 0
+RUN yarn install --only=production
+RUN cp -R node_modules prod_node_modules
+RUN yarn install
 
-WORKDIR $HOME/app
+# ---- Test ----
+FROM dependencies AS test
+COPY src .
+RUN yarn lint && yarn test
 
-RUN npm install --silent --progress=false
-
-COPY . $HOME/app
-
-CMD ["npm", "start"]
+# ---- Release ----
+FROM base AS release
+COPY --from=dependecies /app/prod_node_modules ./node_modules
+COPY . .
+EXPOSE 80
+CMD npm run start
