@@ -1,5 +1,6 @@
 
 const sha1 = require('sha1')
+const bcrypt = require('bcrypt')
 const Query = require('../helpers')
 
 const users = (deps) => {
@@ -11,16 +12,22 @@ const users = (deps) => {
     },
 
     save: (email, password) => {
-      return new Promise((resolve, reject) => {
-        connection.query('INSERT INTO users (id, email, pass) values (uuid(), ?, ?)', [email, sha1(password)],
-          (error, results) => {
-            if (error) {
-              errorHandler(error, `Falha ao salvar o usuário ${email}`, reject)
-              return false
-            }
+      const saltRounds = 10;
 
-            resolve({ users: { email, id: results.insertId } })
+      return new Promise((resolve, reject) => {
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+          bcrypt.hash(password, salt, (err, hash) => {
+            connection.query('INSERT INTO users (id, email, pass) values (uuid(), ?, ?)', [email, hash],
+              (error, results) => {
+                if (error) {
+                  errorHandler(error, `Falha ao salvar o usuário ${email}`, reject)
+                  return false
+                }
+    
+                resolve({ users: { email, id: results.insertId } })
+              })
           })
+        })
       })
     },
 
