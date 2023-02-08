@@ -1,5 +1,5 @@
 # ---- Base Node ----
-FROM node:14-alpine3.13 AS base
+FROM node:17-alpine3.13 AS base
 LABEL maintainer="lucas.augusto5061@gmail.com"
 
 RUN apk add --no-cache tini yarn git
