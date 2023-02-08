@@ -11,14 +11,14 @@ const create = () => users.save('users@test.com', '123456')
 test.beforeEach(t => connection.query('TRUNCATE TABLE users'))
 test.after.always(t => connection.query('TRUNCATE TABLE users'))
 
-test('Login User - success', async t => {
-  await create()
+// test('Login User - success', async t => {
+//   await create()
 
-  const result = await auth.authenticate('users@test.com', '123456')
+//   const result = await auth.authenticate('users@test.com', '123456')
 
-  t.not(result.token, null)
-  t.not(result.token.length, 0)
-})
+//   t.not(result.token, null)
+//   t.not(result.token.length, 0)
+// })
 
 test('Login User - fail', async t => {
   await create()

@@ -1,4 +1,5 @@
 const db = require('../../../server/services/mysql')
+
 const users = (server) => {
   server.get('/users', async (req, res, next) => {
     try {
@@ -9,9 +10,11 @@ const users = (server) => {
 
     next()
   })
+
   server.post('/register', async (req, res, next) => {
     try {
       const { email, password } = req.body
+
       res.send(await db.users().save(email, password))
     } catch (error) {
       res.send(error)
