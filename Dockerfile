@@ -1,4 +1,3 @@
-# ---- Base Node ----
 FROM node:17-alpine3.13 AS base
 LABEL maintainer="lucas.augusto5061@gmail.com"
 
